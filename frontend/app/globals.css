@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* Animated mesh gradient for login background */
+@keyframes meshMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.login-bg {
+  background: linear-gradient(
+    135deg,
+    #000510 0%,
+    #040d18 20%,
+    #061428 40%,
+    #030b20 60%,
+    #050e1a 80%,
+    #000510 100%
+  );
+  background-size: 400% 400%;
+  animation: meshMove 12s ease infinite;
+}
+
+/* Scan line overlay */
+.scanlines::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 229, 255, 0.015) 2px,
+    rgba(0, 229, 255, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Status ring pulse */
+@keyframes ringPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4), 0 0 30px rgba(0, 229, 255, 0.3); }
+  50%       { box-shadow: 0 0 0 20px rgba(0, 229, 255, 0), 0 0 60px rgba(0, 229, 255, 0.5); }
+}
+
+@keyframes ringPulseBreak {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 160, 60, 0.3), 0 0 20px rgba(255, 160, 60, 0.2); }
+  50%       { box-shadow: 0 0 0 12px rgba(255, 160, 60, 0), 0 0 40px rgba(255, 160, 60, 0.3); }
+}
+
+.ring-active {
+  animation: ringPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border: 3px solid #00e5ff;
+}
+
+.ring-break {
+  animation: ringPulseBreak 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border: 3px solid #ffa03c;
+}
+
+/* Manager card stagger animation */
+@keyframes cardSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-stagger {
+  animation: cardSlideUp 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+/* Score gauge glow */
+@keyframes accentGlow {
+  from { filter: drop-shadow(0 0 4px #00ff9d60); }
+  to   { filter: drop-shadow(0 0 12px #00ff9da0); }
+}
+
+.gauge-glow {
+  animation: accentGlow 2s ease-in-out infinite alternate;
+}
+
+/* Status dot pulse */
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.4); }
+}
+
+.dot-pulse {
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1a3028; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #00ff9d40; }

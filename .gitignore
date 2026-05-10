@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+venv/
+*.py[cod]
+*$py.class
+snapsync.db
+snapsync_client.log
+
+# Node.js / Next.js
+node_modules/
+.next/
+out/
+build/
+
+# Environment / Secrets
+.env
+.env.local
+.env.development.local
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Developer & Test Scripts
+debug_db.py
+seed.py
